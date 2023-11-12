@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fea594975782f4b1e8ceadd89852ba8e, type: 3}
-  m_Name: newCharacter
+  m_Name: Ninja frog
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Ability: 
-  Health: 0
-  Prtrait: {fileID: 0}
+  Name: "\uB2CC\uC790 \uD504\uB85C\uADF8"
+  Description: "\uC0C1\uAE08 \uB2CC\uC790\uAC00 \uB418\uAE30 \uC704\uD574 \uC218\uB828\uC744
+    \uD558\uACE0 \uC788\uB2E4."
+  Ability: "\uB2CC\uC790 \uBE44\uAE30"
+  Health: 180
+  Prtrait: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
