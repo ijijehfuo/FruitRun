@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,11 @@ public class UICharacterSelect : MonoBehaviour
     public Button RightButton;
 
     public Character[] Characters;
+    public GameObject ButtonPrefab;
+    public Transform ButtonParent;
     [SerializeField] private Text _nameText;
     [SerializeField] private Text _descriptionText;
-    [SerializeField] private Image _portraitImage;
+    [SerializeField] private Animator _animator;
     private int _currentIndex = 0;
 
     void Start()
@@ -31,7 +34,25 @@ public class UICharacterSelect : MonoBehaviour
         Character currentCharacter = Characters[_currentIndex];
         _nameText.text = currentCharacter.Name;
         _descriptionText.text = currentCharacter.Description;
-        _portraitImage.sprite = currentCharacter.Prtrait;
+        _animator.runtimeAnimatorController = currentCharacter.Animator;
+        LoadSkill(currentCharacter);
+    }
+
+    private void LoadSkill(Character currentCharacter)
+    {
+        for (int i = 0; i < ButtonParent.childCount; i++)
+        {
+            Destroy(ButtonParent.GetChild(i));
+        }
+
+        for (int i = 0; i < currentCharacter.Skills.Length; i++)
+        {
+            GameObject Button = GameObject.Instantiate(ButtonPrefab, ButtonParent);
+            Button.GetComponent<SkillButton>().Skill = currentCharacter.Skills[i];
+            Button.GetComponent<SkillButton>().Button.onClick.AddListener(() => UISkillPopup.Instance.SetData(Button.GetComponent<SkillButton>().Skill));
+            Button.GetComponent<SkillButton>().Button.onClick.AddListener(() => UISkillPopup.Instance.Open());
+
+        }
     }
 
     private void NextCharacter()

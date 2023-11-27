@@ -22,5 +22,6 @@ public class Skill : ScriptableObject
     public string Description;
     public TYPE Type;
     public intensity Intensity;
+    public Sprite Icon;
 
 }

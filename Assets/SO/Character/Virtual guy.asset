@@ -16,4 +16,6 @@ MonoBehaviour:
   Description: "VR\uC5D0 \uBE60\uC838\uC788\uB2E4."
   Ability: "VR \uC138\uACC4"
   Health: 120
-  Prtrait: {fileID: 4278371960119211202, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  Animator: {fileID: 9100000, guid: 4bbe1e6104fed4c34a8b4976b1f93682, type: 2}
+  Skills:
+  - {fileID: 11400000, guid: face85071b85947148c56a58b977ad6e, type: 2}

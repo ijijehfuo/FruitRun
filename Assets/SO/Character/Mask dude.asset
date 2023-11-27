@@ -16,4 +16,6 @@ MonoBehaviour:
   Description: "\uC5B4\uB5A4 \uBD80\uC871\uC758 \uC871\uC7A5\uC774\uB2E4."
   Ability: "\uB2E8\uCCB4 \uACF5\uACA9"
   Health: 150
-  Prtrait: {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+  Animator: {fileID: 9100000, guid: 7dc6e39cf702c49f2b631be95268ebd8, type: 2}
+  Skills:
+  - {fileID: 11400000, guid: 89f4c85b1d78e4a55a41919189db0fad, type: 2}
