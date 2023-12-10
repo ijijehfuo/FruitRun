@@ -1367,6 +1367,7 @@ MonoBehaviour:
   TitleText: {fileID: 1762394224}
   Description: {fileID: 646320418}
   Skill_Icon: {fileID: 682106504}
+  CloseButton: {fileID: 1935421179}
 --- !u!95 &1272328827
 Animator:
   serializedVersion: 5

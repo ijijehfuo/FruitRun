@@ -11,10 +11,17 @@ public class UISkillPopup : UIPopup
     public Text TitleText;
     public Text Description;
     public Image Skill_Icon;
+    public Button CloseButton;
 
     private void Awake()
     {
         Instance = this;
+        CloseButton.onClick.AddListener(() => this.GetComponent<Animator>().SetTrigger("Close"));
+    }
+
+    private void OnClick()
+    {
+        
     }
 
     public void SetData(Skill Data)
