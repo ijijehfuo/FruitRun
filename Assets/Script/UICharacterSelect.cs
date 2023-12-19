@@ -40,9 +40,9 @@ public class UICharacterSelect : MonoBehaviour
 
     private void LoadSkill(Character currentCharacter)
     {
-        for (int i = 0; i < ButtonParent.childCount; i++)
+        for (int i = ButtonParent.childCount - 1; i >= 0; i--)
         {
-            Destroy(ButtonParent.GetChild(i));
+            Destroy(ButtonParent.GetChild(i).gameObject);
         }
 
         for (int i = 0; i < currentCharacter.Skills.Length; i++)

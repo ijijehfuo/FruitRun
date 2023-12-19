@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3432567663227475061}
   - component: {fileID: 7558494235364779136}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: SkillSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,4 +7,9 @@ public class SkillButton : MonoBehaviour
 {
     public Button Button;
     public Skill Skill;
+
+    private void Start()
+    {
+        GetComponent<Image>().sprite = Skill.Icon;
+    }
 }
