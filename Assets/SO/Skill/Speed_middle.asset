@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: "\uD798\uC744 \uBAA8\uC544\uC11C \uC9C8\uC8FC\uD55C\uB2E4."
   Type: 0
   Intensity: 1
+  Icon: {fileID: 21300000, guid: 35b4f3b51c8fc4c48ba3f7750be46e4b, type: 3}
