@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class UIStageSelect : MonoBehaviour
 {
+    public Transform SelectParent;
     public Button[] SelectButton;
 
     void Start()
     {
-        // 목표 : 버튼을 눌렀을 때 "this is Button + {transform.name}
+        SelectButton = SelectParent.GetComponentsInChildren<Button>();
+
+        // 목표 : 버튼을 눌렀을 때 Button_Stage_0 에서 0부분을 LevelManager에 등록!
         for (int i =0; i < SelectButton.Length; i++)
         {
             string name = SelectButton[i].transform.name;
-            SelectButton[i].onClick.AddListener(() => Debug.Log("this is Button " + name));
+            // name = Button_Stage_0
+            string[] buttonList = name.Split('_');
+            string StageNumber = buttonList[2];
+
+            SelectButton[i].onClick.AddListener(() => LevelManager.Instance.StageIndex = int.Parse(StageNumber));
         }
 
     }
