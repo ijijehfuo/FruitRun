@@ -8,10 +8,13 @@ public class UICharacterSelect : MonoBehaviour
 {
     public Button LeftButton;
     public Button RightButton;
+    public Button StartButton;
 
     public Character[] Characters;
     public GameObject ButtonPrefab;
     public Transform ButtonParent;
+
+
     [SerializeField] private Text _nameText;
     [SerializeField] private Text _descriptionText;
     [SerializeField] private Animator _animator;
@@ -27,6 +30,7 @@ public class UICharacterSelect : MonoBehaviour
     {
         LeftButton.onClick.AddListener(PreviousCharacter);
         RightButton.onClick.AddListener(NextCharacter);
+        StartButton.onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Start));
     }
 
     private void UpdateCharacterDisplay()
