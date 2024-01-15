@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum ButtonClickType
 {
@@ -44,6 +45,7 @@ public class UISceneCanvas : MonoBehaviour
                 UI_LevelSelect.gameObject.SetActive(true);
                 break;
             case ButtonClickType.Level:
+                SceneManager.LoadScene("GameScene");
                 // 씬 이동
                 break;
             default:

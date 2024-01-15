@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class UILevelSelect : MonoBehaviour
 {
     public Transform LevelParent;
+    public Button ExitButton;
     public Button[] LevelButtons;
+    public Text LevelText;
 
     void Start()
     {
@@ -19,7 +21,19 @@ public class UILevelSelect : MonoBehaviour
             int LevelNumber = int.Parse(LevelList[2]);
 
             LevelButtons[i].onClick.AddListener(() => LevelManager.Instance.LevelIndex = LevelNumber);
+            LevelButtons[i].onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Level));
         }
+
+        ExitButton.onClick.AddListener(() => gameObject.SetActive(false));
     }
 
+    public void UpdateLevelText()
+    {
+        LevelText.text = LevelManager.Instance.StageIndex + " Level Select";
+    }
+
+    private void OnEnable()
+    {
+        UpdateLevelText();
+    }
 }

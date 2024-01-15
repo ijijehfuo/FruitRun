@@ -7,6 +7,7 @@ public class UIStageSelect : MonoBehaviour
 {
     public Transform SelectParent;
     public Button[] SelectButton;
+    public Button ExitButton;
 
     void Start()
     {
@@ -21,7 +22,9 @@ public class UIStageSelect : MonoBehaviour
             string StageNumber = buttonList[2];
 
             SelectButton[i].onClick.AddListener(() => LevelManager.Instance.StageIndex = int.Parse(StageNumber));
+            SelectButton[i].onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Stage));
         }
 
+        ExitButton.onClick.AddListener(() => gameObject.SetActive(false));
     }
 }
