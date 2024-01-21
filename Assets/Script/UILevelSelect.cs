@@ -36,4 +36,7 @@ public class UILevelSelect : MonoBehaviour
     {
         UpdateLevelText();
     }
+
+    //           start/OnEnable   update onDestroy(OnDisable)
+    // 차를 운전 => 시동키기(최초) => 운전(계속) => 시동끄기(마지막)
 }
