@@ -6,17 +6,33 @@ public class Platform : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public Vector3 moveDirection = Vector3.left;
-    public float EndPoint = -10;
+    public float EndPoint = -20;
+
+    public Vector3 initialPosition;
+
+    public void init()
+    {
+        transform.position = initialPosition;
+        this.gameObject.SetActive(true);
+    }
+
+    private void Awake()
+    {
+        initialPosition = transform.position;
+        init();
+    }
 
     void Update()
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
         if (transform.position.x < EndPoint)
         {
             this.gameObject.SetActive(false);
-            this.gameObject.transform.position = Vector3.zero + Vector3.right * 20f;
-            this.gameObject.SetActive(true);
         }
     }
 }
