@@ -28,6 +28,7 @@ public class Platform : MonoBehaviour
         {
             return;
         }
+        moveSpeed = GameManager.Instance.GameSpeed;
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
         if (transform.position.x < EndPoint)

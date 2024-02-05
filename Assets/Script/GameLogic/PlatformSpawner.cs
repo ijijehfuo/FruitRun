@@ -48,8 +48,11 @@ public class PlatformSpawner : MonoBehaviour
 
     private void Update()
     {
+        // 게임속도에 따라 spawnTime 조정
+        float adjustedSpawnTime = Mathf.Max(SpawnTime - GameManager.Instance.GameSpeed * 0.1f, 1f);
+
         currentTime += Time.deltaTime;
-        if (currentTime >= SpawnTime)
+        if (currentTime >= adjustedSpawnTime)
         {
             if (Platforms.Count >= 5)
             {
