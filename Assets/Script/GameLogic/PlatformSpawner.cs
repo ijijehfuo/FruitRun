@@ -19,7 +19,7 @@ public class PlatformSpawner : MonoBehaviour
 
     public GameObject Prefab;
     public List<GameObject> Platforms = new();
-    public float SpawnTime = 3f;
+    public float SpawnTime = 2f;
     private float Max_Y = 5f;
     private float Min_Y = -3f;
     private float currentTime = 0f;
@@ -29,17 +29,17 @@ public class PlatformSpawner : MonoBehaviour
         GameObject go = GameObject.Instantiate(Prefab);
         Platforms.Add(go);
 
-        go.transform.position += Vector3.up * Random.Range(Max_Y, Min_Y);
+        go.transform.position += Vector3.up * Random.Range(Min_Y, Max_Y);
     }
 
     private void Recycle()
     {
         for (int i = 0; i <Platforms.Count; i++)
         {
-            if (Platforms[i].gameObject.activeSelf)
+            if (!Platforms[i].gameObject.activeSelf)
             {
                 Platforms[i].GetComponent<Platform>().init();
-                Platforms[i].transform.position += Vector3.up * Random.Range(Max_Y, Min_Y);
+                Platforms[i].transform.position += Vector3.up * Random.Range(Min_Y, Max_Y);
 
                 break;
             }

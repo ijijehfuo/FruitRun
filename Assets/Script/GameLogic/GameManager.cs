@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         // 30초보다 크거나 같게 되었을때 게임속도 Gamespeed가 증가
 
         difficultyTimer += Time.deltaTime;
-        if (difficultyTimer >= 5)
+        if (difficultyTimer >= 30)
         {
             GameSpeed += 1f;
             difficultyTimer = 0;

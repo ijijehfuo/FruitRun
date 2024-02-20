@@ -6,7 +6,7 @@ public class Platform : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public Vector3 moveDirection = Vector3.left;
-    public float EndPoint = -20;
+    public float EndPoint = -10;
 
     public Vector3 initialPosition;
 
