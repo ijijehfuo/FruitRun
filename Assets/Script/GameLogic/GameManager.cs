@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     // 게임 생태 관리
     public bool IsGameStarted { get; private set; }
     public bool IsGameOver { get; private set; }
+    public bool IsPause { get; private set; }
 
     // 게임 진행에 따른 변수들
     public int Score { get; private set; }
     public float GameSpeed { get; set; }
     public float PlayerHP { get; set; }
+    public int EarnedCoin { get; set; }
 
     // 특별 이벤트
     public bool IsSpeedBoostActive { get; private set; }
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     // 난이도 조절을 위한 시간 추적
     private float difficultyTimer;
+    public float playTimeTimer = 0f;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateGameDifficulty();
+        UpdatePlayTime();
     }
 
     private void initializeGame()
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour
         GameSpeed = 3f;
         IsSpeedBoostActive = false;
         difficultyTimer = 0f;
+        playTimeTimer = 0f;
+        EarnedCoin = 0;
     }
 
     private void UpdateGameDifficulty()
@@ -59,6 +65,18 @@ public class GameManager : MonoBehaviour
         {
             GameSpeed += 1f;
             difficultyTimer = 0;
+        }
+    }
+
+    private void UpdatePlayTime()
+    {
+        if (IsPause)
+        {
+            return;
+        }
+        else
+        {
+            playTimeTimer += Time.deltaTime;
         }
     }
 }

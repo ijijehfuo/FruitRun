@@ -15,8 +15,20 @@ public class Platform : MonoBehaviour
     public GameObject Coin3;
     public GameObject[] Coins;
 
+    private void activateAllCoins()
+    {
+        foreach (var coin in Coins)
+        {
+            foreach (Transform child in coin.transform)
+            {
+                child.GetComponent<Coin>().OnDisable();
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
     public void init()
     {
+        activateAllCoins();
         transform.position = initialPosition;
         this.gameObject.SetActive(true);
         SpawnCoinWithWeightRandom();
