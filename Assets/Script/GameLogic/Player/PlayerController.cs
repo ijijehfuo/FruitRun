@@ -50,7 +50,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Coin"))
         {
-            collision.GetComponent<Coin>().OnEarned(); 
+            if (collision.GetComponent<Coin>() != null)
+            {
+                collision.GetComponent<Coin>().OnEarned();
+            }
+            else if (collision.GetComponent<Obstacles>() != null)
+            {
+                collision.GetComponent<Obstacles>().OnEarned();
+            }
         }
     }
 }

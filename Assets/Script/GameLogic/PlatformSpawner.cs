@@ -20,6 +20,7 @@ public class PlatformSpawner : MonoBehaviour
     public GameObject Prefab;
     public List<GameObject> Platforms = new();
     public float SpawnTime = 2f;
+    public static float initial_x = 18f;
     private float Max_Y = 5f;
     private float Min_Y = -3f;
     private float currentTime = 0f;
@@ -29,6 +30,7 @@ public class PlatformSpawner : MonoBehaviour
         GameObject go = GameObject.Instantiate(Prefab);
         Platforms.Add(go);
 
+        go.transform.position = Vector3.right * initial_x;
         go.transform.position += Vector3.up * Random.Range(Min_Y, Max_Y);
     }
 
@@ -54,7 +56,7 @@ public class PlatformSpawner : MonoBehaviour
         currentTime += Time.deltaTime;
         if (currentTime >= adjustedSpawnTime)
         {
-            if (Platforms.Count >= 5)
+            if (Platforms.Count >= 10)
             {
                 Recycle();
             }

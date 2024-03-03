@@ -15,6 +15,11 @@ public class Platform : MonoBehaviour
     public GameObject Coin3;
     public GameObject[] Coins;
 
+    public GameObject Obstacle1;
+    public GameObject Obstacle2;
+    public GameObject Obstacle3;
+    public GameObject[] Obstacles;
+
     private void activateAllCoins()
     {
         foreach (var coin in Coins)
@@ -26,19 +31,36 @@ public class Platform : MonoBehaviour
             }
         }
     }
+
+    private void activateAllObstacles()
+    {
+        foreach (var obstacle in Obstacles)
+        {
+            foreach (Transform child in obstacle.transform)
+            {
+                child.GetComponent<Obstacles>().OnDisable();
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
     public void init()
     {
         activateAllCoins();
+        activateAllObstacles();
         transform.position = initialPosition;
         this.gameObject.SetActive(true);
         SpawnCoinWithWeightRandom();
+        SpawnObstacleWithWeightRandom();
     }
 
     private void Awake()
     {
         initialPosition = transform.position;
+        initialPosition.x = PlatformSpawner.initial_x;
         Coins = new GameObject[] { Coin1, Coin2, Coin3 };
+        Obstacles = new GameObject[] { Obstacle1, Obstacle2, Obstacle3 };
         SpawnCoinWithWeightRandom();
+        SpawnObstacleWithWeightRandom();
     }
 
     void Update()
@@ -113,6 +135,37 @@ public class Platform : MonoBehaviour
             if (randomIndex < weights[i])
             {
                 target = Coins[i];
+                break;
+            }
+            randomIndex -= weights[i];
+        }
+
+        target.SetActive(true);
+    }
+
+    private void SpawnObstacleWithWeightRandom()
+    {
+        for (int i = 0; i < Obstacles.Length; i++)
+        {
+            Obstacles[i].gameObject.SetActive(false);
+        }
+
+        GameObject target = Obstacles[0];
+
+        int[] weights = new int[] { 20, 30, 50 };
+
+        int totalWeight = 0;
+        for (int i = 0; i < weights.Length; i++)
+        {
+            totalWeight += weights[i];
+        }
+
+        int randomIndex = Random.Range(0, totalWeight);
+        for (int i = 0; i < weights.Length; i++)
+        {
+            if (randomIndex < weights[i])
+            {
+                target = Obstacles[i];
                 break;
             }
             randomIndex -= weights[i];

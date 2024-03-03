@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     private float difficultyTimer;
     public float playTimeTimer = 0f;
 
+    // 체력 관련
+    float maxHP = 10f;
+
     private void Awake()
     {
         Instance = this;
@@ -77,6 +80,34 @@ public class GameManager : MonoBehaviour
         else
         {
             playTimeTimer += Time.deltaTime;
+        }
+    }
+
+    // 변수를 매개변수로 받아 체력을 높이는 코드
+    // 최대체력 이상 시 체력은 최대체력으로 유지
+    public void IncreaseHealth(int value)
+    {
+        PlayerHP += value;
+
+        if (PlayerHP >= maxHP)
+        {
+            PlayerHP = maxHP;
+        }
+    }
+
+    // 감소값을 매개변수로 받아
+    // 체력을 낮추는 코드
+
+    // 체력 0 이하일시에
+    //isGameOver를 참으로 설정
+    public void DecreaseHealth(int value)
+    {
+        PlayerHP -= value;
+
+        if (PlayerHP <= 0)
+        {
+            IsGameOver = true;
+            PlayerHP = 0;
         }
     }
 }
