@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public float playTimeTimer = 0f;
 
     // 체력 관련
-    float maxHP = 10f;
+    public float maxHP = 10f;
 
     private void Awake()
     {

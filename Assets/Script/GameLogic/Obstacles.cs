@@ -6,14 +6,18 @@ public class Obstacles : MonoBehaviour
 {
     private bool isRotate;
     private float timer = 0;
+    public ParticleSystem particle;
 
     public void OnEarned()
     {
+        particle.Play();
         if (isRotate == true)
         {
             return;
         }
+
         isRotate = true;
+        CameraManager.instance.TriggerShake();
         GameManager.Instance.DecreaseHealth(2);
     }
 

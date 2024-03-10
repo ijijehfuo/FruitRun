@@ -150,9 +150,9 @@ public class Platform : MonoBehaviour
             Obstacles[i].gameObject.SetActive(false);
         }
 
-        GameObject target = Obstacles[0];
+        GameObject target = null;
 
-        int[] weights = new int[] { 20, 30, 50 };
+        int[] weights = new int[] { 20, 30, 50, 100};
 
         int totalWeight = 0;
         for (int i = 0; i < weights.Length; i++)
@@ -165,12 +165,18 @@ public class Platform : MonoBehaviour
         {
             if (randomIndex < weights[i])
             {
-                target = Obstacles[i];
+                if (i < Obstacles.Length)
+                {
+                    target = Obstacles[i];
+                }
                 break;
             }
             randomIndex -= weights[i];
         }
 
-        target.SetActive(true);
+        if (target != null)
+        {
+            target.SetActive(true);
+        }
     }
 }
