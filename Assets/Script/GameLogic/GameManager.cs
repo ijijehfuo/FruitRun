@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         EarnedCoin = 0;
     }
 
+    public void GameOver()
+    {
+        IsGameOver = true;
+    }
+
     private void UpdateGameDifficulty()
     {
         // difficultyTimer에 시간이 지나는것을 체크하고
@@ -106,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         if (PlayerHP <= 0)
         {
-            IsGameOver = true;
+            GameOver();
             PlayerHP = 0;
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float DeathHeight = -7f;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     private Rigidbody2D rb;
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpCount < maxJump)
         {
             Jump();
+        }
+        if (transform.position.y <= DeathHeight)
+        {
+            GameManager.Instance.GameOver();
         }
     }
 
