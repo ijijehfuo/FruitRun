@@ -10,6 +10,7 @@ public class PlayerUIManager : MonoBehaviour
     public int totalScore;
     public Text scoreText;
     public Image HpbarImage;
+    public GameObject GameOverPopup;
 
     void Start()
     {
@@ -18,8 +19,16 @@ public class PlayerUIManager : MonoBehaviour
 
     void Update()
     {
-        totalScore = (int)(GameManager.Instance.playTimeTimer * playtimeWeight + GameManager.Instance.EarnedCoin * CoinWeight);
-        scoreText.text = totalScore.ToString();
-        HpbarImage.fillAmount = GameManager.Instance.PlayerHP / GameManager.Instance.maxHP;
+        if (!GameManager.Instance.IsGameOver)
+        {
+            totalScore = (int)(GameManager.Instance.playTimeTimer * playtimeWeight + GameManager.Instance.EarnedCoin * CoinWeight);
+            scoreText.text = totalScore.ToString();
+            HpbarImage.fillAmount = GameManager.Instance.PlayerHP / GameManager.Instance.maxHP;
+        }
+        else
+        {
+            GameManager.Instance.LastScore(totalScore);
+            GameOverPopup.SetActive(true);
+        }
     }
 }

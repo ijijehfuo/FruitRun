@@ -60,7 +60,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (IsGameOver == true)
+        {
+            return;
+        }
+
         IsGameOver = true;
+    }
+
+    public void LastScore(int score)
+    {
+        Score = score;
     }
 
     private void UpdateGameDifficulty()

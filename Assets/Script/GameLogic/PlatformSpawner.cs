@@ -50,7 +50,7 @@ public class PlatformSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsGameOver = true)
+        if (GameManager.Instance.IsGameOver == true)
         {
             return;
         }

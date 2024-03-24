@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     private bool isGround;
     private int jumpCount = 0;
     public int maxJump = 2;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,10 +30,16 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.GameOver();
         }
+
+        if (GameManager.Instance.IsGameOver)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Jump()
     {
+        animator.SetTrigger("Jump");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         isGround = false;
         jumpCount++;
@@ -61,6 +69,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (collision.GetComponent<Obstacles>() != null)
             {
+                animator.SetTrigger("Hit");
                 collision.GetComponent<Obstacles>().OnEarned();
             }
         }
