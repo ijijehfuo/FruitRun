@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     private Rigidbody2D rb;
+
     private bool isGround;
+    private bool isSliding = false;
     private int jumpCount = 0;
     public int maxJump = 2;
     private Animator animator;
@@ -21,11 +23,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Move();
-        if (Input.GetButtonDown("Jump") && jumpCount < maxJump)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Jump();
+            StartSlide();
         }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            StopSlide();
+        }
+
+        if (!isSliding)
+        {
+            Move();
+            if (Input.GetButtonDown("Jump") && jumpCount < maxJump)
+            {
+                Jump();
+            }
+        }
+
         if (transform.position.y <= DeathHeight)
         {
             GameManager.Instance.GameOver();
@@ -35,14 +50,40 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (GameManager.Instance.IsPause)
+        {
+            rb.Sleep();
+        }
+        else
+        {
+            rb.WakeUp();
+        }
     }
 
-    private void Jump()
+    public void StartSlide()
     {
-        animator.SetTrigger("Jump");
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        isGround = false;
-        jumpCount++;
+        isSliding = true;
+        animator.SetBool("bSlide", true);
+        transform.Rotate(0, 0, 90);
+    }
+
+    public void StopSlide()
+    {
+        isSliding = false;
+        animator.SetBool("bSlide", false);
+        transform.Rotate(0, 0, -90);
+    }
+
+    public void Jump()
+    {
+        if (!isSliding && jumpCount < maxJump)
+        {
+            animator.SetTrigger("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            isGround = false;
+            jumpCount++;
+        }
     }
 
     private void Move()
