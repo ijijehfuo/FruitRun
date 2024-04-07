@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -8,7 +9,7 @@ public class Platform : MonoBehaviour
     public Vector3 moveDirection = Vector3.left;
     public float EndPoint = -10;
 
-    public Vector3 initialPosition;
+    public Vector3 InitialPosition;
 
     public GameObject Coin1;
     public GameObject Coin2;
@@ -20,7 +21,12 @@ public class Platform : MonoBehaviour
     public GameObject Obstacle3;
     public GameObject[] Obstacles;
 
-    private void activateAllCoins()
+    public GameObject SpeedItem;
+    public GameObject ScaleItem;
+    public GameObject HealthItem;
+    public GameObject[] Items;
+
+    private void ActivateAllCoins()
     {
         foreach (var coin in Coins)
         {
@@ -32,7 +38,7 @@ public class Platform : MonoBehaviour
         }
     }
 
-    private void activateAllObstacles()
+    private void ActivateAllObstacles()
     {
         foreach (var obstacle in Obstacles)
         {
@@ -43,24 +49,41 @@ public class Platform : MonoBehaviour
             }
         }
     }
-    public void init()
+
+    private void ActivateAllItems()
     {
-        activateAllCoins();
-        activateAllObstacles();
-        transform.position = initialPosition;
-        this.gameObject.SetActive(true);
-        SpawnCoinWithWeightRandom();
-        SpawnObstacleWithWeightRandom();
+        foreach (var Item in Items)
+        {
+            foreach (Transform child in Item.transform)
+            {
+                child.GetComponent<Items>().OnDisable();
+                child.gameObject.SetActive(true);
+            }
+        }
     }
 
+    public void Init()
+    {
+        ActivateAllCoins();
+        ActivateAllObstacles();
+        ActivateAllItems();
+
+        transform.position = InitialPosition;
+        this.gameObject.SetActive(true);
+        SpawnCoinWithWeightRandom();
+        SpawnObstaclesWithWeightRandom();
+        SpawnItemsWithWeightRandom();
+    }
     private void Awake()
     {
-        initialPosition = transform.position;
-        initialPosition.x = PlatformSpawner.initial_x;
+        InitialPosition = transform.position;
+        InitialPosition.x = PlatformSpawner.initial_x;
         Coins = new GameObject[] { Coin1, Coin2, Coin3 };
         Obstacles = new GameObject[] { Obstacle1, Obstacle2, Obstacle3 };
+        Items = new GameObject[] { SpeedItem, ScaleItem, HealthItem };
         SpawnCoinWithWeightRandom();
-        SpawnObstacleWithWeightRandom();
+        SpawnObstaclesWithWeightRandom();
+        SpawnItemsWithWeightRandom();
     }
 
     void Update()
@@ -69,23 +92,41 @@ public class Platform : MonoBehaviour
         {
             return;
         }
-        moveSpeed = GameManager.Instance.GameSpeed;
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-        if (transform.position.x < EndPoint)
+        if (!GameManager.Instance.IsGameOver)
         {
-            this.gameObject.SetActive(false);
+            if (!GameManager.Instance.IsPause)
+            {
+                moveSpeed = GameManager.Instance.GameSpeed;
+
+                if (GameManager.Instance.SpeedEffectTime >= 0)
+                {
+                    moveSpeed = moveSpeed * 1.5f;
+                }
+
+                transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+
+                if (transform.position.x < EndPoint)
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
         }
+
     }
 
     private void SpawnCoin()
     {
+        // 1. 모든 코인을 비활성화
+        // 1. Coin1 비활성화, Coin2 비활성화, Coin3 비활성화
+        // 2. 랜덤으로 한 코인만 활성화
+
         Coin1.gameObject.SetActive(false);
         Coin2.gameObject.SetActive(false);
         Coin3.gameObject.SetActive(false);
 
-        int randomIndex = Random.Range(1,4);
-
+        int randomIndex = Random.Range(1, 4);
+        // 1 2 3
         if (randomIndex == 1)
         {
             Coin1.gameObject.SetActive(true);
@@ -94,13 +135,13 @@ public class Platform : MonoBehaviour
         {
             Coin2.gameObject.SetActive(true);
         }
-        else if (randomIndex == 3)
+        else
         {
             Coin3.gameObject.SetActive(true);
         }
     }
 
-    private void SpawnCoinRenew()
+    private void SpawnCoinReNew()
     {
         for (int i = 0; i < Coins.Length; i++)
         {
@@ -121,9 +162,11 @@ public class Platform : MonoBehaviour
 
         GameObject target = Coins[0];
 
+        // coin1 coin2 coin3
         int[] weights = new int[] { 20, 30, 50 };
 
         int totalWeight = 0;
+
         for (int i = 0; i < weights.Length; i++)
         {
             totalWeight += weights[i];
@@ -137,13 +180,14 @@ public class Platform : MonoBehaviour
                 target = Coins[i];
                 break;
             }
+
             randomIndex -= weights[i];
         }
 
         target.SetActive(true);
     }
 
-    private void SpawnObstacleWithWeightRandom()
+    private void SpawnObstaclesWithWeightRandom()
     {
         for (int i = 0; i < Obstacles.Length; i++)
         {
@@ -152,9 +196,11 @@ public class Platform : MonoBehaviour
 
         GameObject target = null;
 
-        int[] weights = new int[] { 20, 30, 50, 100};
+        // coin1 coin2 coin3
+        int[] weights = new int[] { 20, 30, 50, 100 };
 
         int totalWeight = 0;
+
         for (int i = 0; i < weights.Length; i++)
         {
             totalWeight += weights[i];
@@ -171,6 +217,47 @@ public class Platform : MonoBehaviour
                 }
                 break;
             }
+
+            randomIndex -= weights[i];
+        }
+
+        if (target != null)
+        {
+            target.SetActive(true);
+        }
+    }
+
+    private void SpawnItemsWithWeightRandom()
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Items[i].gameObject.SetActive(false);
+        }
+
+        GameObject target = null;
+
+        // coin1 coin2 coin3
+        int[] weights = new int[] { 20, 30, 50, 100 };
+
+        int totalWeight = 0;
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            totalWeight += weights[i];
+        }
+
+        int randomIndex = Random.Range(0, totalWeight);
+        for (int i = 0; i < weights.Length; i++)
+        {
+            if (randomIndex < weights[i])
+            {
+                if (i < Items.Length)
+                {
+                    target = Items[i];
+                }
+                break;
+            }
+
             randomIndex -= weights[i];
         }
 

@@ -24,7 +24,8 @@ public class UIGamePause : MonoBehaviour
 
     private void Continue()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.GameContinue();
+        gameObject.SetActive(false);
     }
 
     private void ChangeUIScene()

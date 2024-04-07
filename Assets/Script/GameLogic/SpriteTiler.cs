@@ -15,10 +15,13 @@ public class SpriteTiler : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsGameOver || !GameManager.Instance.IsPause)
+        if (!GameManager.Instance.IsGameOver)
         {
-            offset.x += scrollSpeed * Time.deltaTime;
-            material.mainTextureOffset = offset;
+            if (!GameManager.Instance.IsPause)
+            {
+                offset.x += scrollSpeed * Time.deltaTime;
+                material.mainTextureOffset = offset;
+            }
         }
     }
 }

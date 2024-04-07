@@ -40,7 +40,7 @@ public class PlatformSpawner : MonoBehaviour
         {
             if (!Platforms[i].gameObject.activeSelf)
             {
-                Platforms[i].GetComponent<Platform>().init();
+                Platforms[i].GetComponent<Platform>().Init();
                 Platforms[i].transform.position += Vector3.up * Random.Range(Min_Y, Max_Y);
 
                 break;

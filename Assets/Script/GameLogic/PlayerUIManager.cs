@@ -22,6 +22,7 @@ public class PlayerUIManager : MonoBehaviour
     void Start()
     {
         Jumpbutton.onClick.AddListener(PlayerController.Jump);
+        PauseButton.onClick.AddListener(() =>GameManager.Instance.GamePause());
     }
 
     void Update()

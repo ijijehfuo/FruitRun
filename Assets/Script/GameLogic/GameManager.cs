@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     // 체력 관련
     public float maxHP = 10f;
 
+    public float SpeedEffectTime = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -41,8 +43,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateGameDifficulty();
-        UpdatePlayTime();
+        if (!IsGameOver)
+        {
+            if (!IsPause)
+            {
+                UpdateGameDifficulty();
+                UpdatePlayTime();
+                UpdateSpeedEffectTime();
+            }
+        }
     }
 
     private void initializeGame()
@@ -68,6 +77,16 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
     }
 
+    public void GamePause()
+    {
+        IsPause = true;
+    }
+
+    public void GameContinue()
+    {
+        IsPause = false;
+    }
+
     public void LastScore(int score)
     {
         Score = score;
@@ -86,8 +105,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void UpdateSpeedEffectTime()
+    {
+        if (SpeedEffectTime >= 0)
+        {
+            SpeedEffectTime -= Time.deltaTime;
+        }
+    }
+
+    public void IncreaseSpeedTime(int value)
+    {
+        SpeedEffectTime = value;
+    }
+
     private void UpdatePlayTime()
     {
+
         if (IsPause)
         {
             return;

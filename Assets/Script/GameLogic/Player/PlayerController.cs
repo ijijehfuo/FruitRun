@@ -113,6 +113,10 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("Hit");
                 collision.GetComponent<Obstacles>().OnEarned();
             }
+            else if (collision.GetComponent<Items>() != null)
+            {
+                collision.GetComponent<Items>().OnEarned();
+            }
         }
     }
 }
