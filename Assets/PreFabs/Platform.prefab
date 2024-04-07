@@ -5213,7 +5213,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5387066518289652879}
-  - component: {fileID: 6199459111629030923}
   m_Layer: 0
   m_Name: Speed
   m_TagString: Untagged
@@ -5237,19 +5236,6 @@ Transform:
   m_Father: {fileID: 6729540342261710863}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6199459111629030923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505491589241960343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
 --- !u!1 &1662177592487924586
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,6 +5424,7 @@ GameObject:
   - component: {fileID: 3702763146740439504}
   - component: {fileID: 1528331070829844615}
   - component: {fileID: 3734950313471135076}
+  - component: {fileID: 7912144880101705384}
   m_Layer: 7
   m_Name: Kiwi
   m_TagString: Coin
@@ -5578,6 +5565,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &7912144880101705384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089136125218691792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &2874146110414760636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5590,6 +5590,7 @@ GameObject:
   - component: {fileID: 6530707437501642866}
   - component: {fileID: 1132829479968089195}
   - component: {fileID: 993093279601857699}
+  - component: {fileID: 1620604086504933557}
   m_Layer: 7
   m_Name: Cherry
   m_TagString: Coin
@@ -5730,6 +5731,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &1620604086504933557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2874146110414760636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &3044646219264022016
 GameObject:
   m_ObjectHideFlags: 0
@@ -10927,7 +10941,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7961648960695313960}
-  - component: {fileID: 3749826050051943247}
   m_Layer: 0
   m_Name: ScaleUp
   m_TagString: Untagged
@@ -10951,19 +10964,6 @@ Transform:
   m_Father: {fileID: 6729540342261710863}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3749826050051943247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4632199273320534029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
 --- !u!1 &4682195252395541886
 GameObject:
   m_ObjectHideFlags: 0
@@ -16339,6 +16339,7 @@ GameObject:
   - component: {fileID: 5044050026915864966}
   - component: {fileID: 7211797527851012351}
   - component: {fileID: 4336952562368076670}
+  - component: {fileID: 4148444527887099571}
   m_Layer: 7
   m_Name: Banana
   m_TagString: Coin
@@ -16479,6 +16480,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &4148444527887099571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7168166529960968722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!1 &7225004565698607131
 GameObject:
   m_ObjectHideFlags: 0
@@ -16919,7 +16933,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8925574631713822176}
-  - component: {fileID: 4862303736826104902}
   m_Layer: 0
   m_Name: HealthUp
   m_TagString: Untagged
@@ -16943,19 +16956,6 @@ Transform:
   m_Father: {fileID: 6729540342261710863}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4862303736826104902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7876285151115659943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2469f94432474b56b88cddc6373dbf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
 --- !u!1 &8278307920113261098
 GameObject:
   m_ObjectHideFlags: 0
