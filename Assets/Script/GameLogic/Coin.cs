@@ -14,6 +14,7 @@ public class Coin : MonoBehaviour
             return;
         }
         isRotate = true;
+        audioManager.Instance.PlayEffect(ClipName.Coin);
         GameManager.Instance.EarnedCoin++;
     }
 

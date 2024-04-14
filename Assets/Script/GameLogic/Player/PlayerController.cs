@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public void StartSlide()
     {
         isSliding = true;
+        audioManager.Instance.PlayEffect(ClipName.Slide);
         animator.SetBool("bSlide", true);
         transform.Rotate(0, 0, 90);
     }
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isSliding && jumpCount < maxJump)
         {
+            audioManager.Instance.PlayEffect(ClipName.Jump);
             animator.SetTrigger("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGround = false;

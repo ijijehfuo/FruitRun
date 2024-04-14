@@ -17,6 +17,7 @@ public class Obstacles : MonoBehaviour
         }
 
         isRotate = true;
+        audioManager.Instance.PlayEffect(ClipName.Explo);
         CameraManager.instance.TriggerShake();
         GameManager.Instance.DecreaseHealth(2);
     }

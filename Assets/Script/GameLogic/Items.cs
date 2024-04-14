@@ -23,6 +23,8 @@ public class Items : MonoBehaviour
         }
         isRotate = true;
 
+        audioManager.Instance.PlayEffect(ClipName.Food);
+
         if (type == ItemType.Health)
         {
             GameManager.Instance.IncreaseHealth(15);
