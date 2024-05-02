@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum ButtonClickType
 {
@@ -19,11 +20,41 @@ public class UISceneCanvas : MonoBehaviour
     public GameObject UI_StageSelect;
     public GameObject UI_LevelSelect;
 
+    public Text GameMoneyText;
+    public Text CashText;
+
     public static UISceneCanvas Instance;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void Start()
+    {
+        // 아스키코드
+        GameMoneyText.text = DataManager.Instance.GameMoney.ToString();
+        CashText.text = DataManager.Instance.Cash.ToString();
+    }
+
+    public void EarnGameMoney(int ExtraMoney)
+    {
+        DataManager.Instance.GameMoney += ExtraMoney;
+        UpdateText();
+        DataManager.Instance.MessagePopup.UpdateContent("골드를 " + ExtraMoney.ToString() + " 획득하셨습니다!", false);
+    }
+
+    public void EarnCash(int ExtraCash)
+    {
+        DataManager.Instance.Cash += ExtraCash;
+        UpdateText();
+        DataManager.Instance.MessagePopup.UpdateContent("케시를 " + ExtraCash.ToString() + " 획득하셨습니다!", true);
+    }
+
+    public void UpdateText()
+    {
+        GameMoneyText.text = DataManager.Instance.GameMoney.ToString();
+        CashText.text = DataManager.Instance.Cash.ToString();
     }
 
     public void ClearPopup()

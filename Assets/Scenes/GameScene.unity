@@ -3360,8 +3360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedBoostDuration: 5
-  playTimeTimer: 0
-  maxHP: 10
+  PlayTimeTimer: 0
+  maxHp: 10
   SpeedEffectTime: 0
 --- !u!4 &2037951906
 Transform:

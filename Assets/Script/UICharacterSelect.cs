@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 
 public class UICharacterSelect : MonoBehaviour
@@ -17,7 +18,7 @@ public class UICharacterSelect : MonoBehaviour
 
     [SerializeField] private Text _nameText;
     [SerializeField] private Text _descriptionText;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteLibrary _asset;
     private int _currentIndex = 0;
 
     void Start()
@@ -38,7 +39,7 @@ public class UICharacterSelect : MonoBehaviour
         Character currentCharacter = Characters[_currentIndex];
         _nameText.text = currentCharacter.Name;
         _descriptionText.text = currentCharacter.Description;
-        _animator.runtimeAnimatorController = currentCharacter.Animator;
+        _asset .spriteLibraryAsset = currentCharacter.Asset;
         LoadSkill(currentCharacter);
     }
 

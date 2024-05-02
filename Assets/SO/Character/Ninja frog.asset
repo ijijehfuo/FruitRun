@@ -17,6 +17,6 @@ MonoBehaviour:
     \uD558\uACE0 \uC788\uB2E4."
   Ability: "\uB2CC\uC790 \uBE44\uAE30"
   Health: 180
-  Animator: {fileID: 9100000, guid: b1c6e53791226426e8df764c12823f72, type: 2}
+  Asset: {fileID: 7108339969198208228, guid: 0354cb05df0d8418ba4c624d94d642a3, type: 3}
   Skills:
   - {fileID: 11400000, guid: 3316f2aa86d9a4778aa3f77fcc24f6dd, type: 2}

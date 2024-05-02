@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 [CreateAssetMenu(fileName = "newCharacter", menuName = "Character")]
 public class Character : ScriptableObject
@@ -10,6 +10,6 @@ public class Character : ScriptableObject
     public string Description;
     public string Ability;
     public float Health;
-    public AnimatorController Animator;
+    public SpriteLibraryAsset Asset;
     public Skill[] Skills;
 }

@@ -38,9 +38,9 @@ public class PlayerUIManager : MonoBehaviour
         }
         else
         {
-            totalScore = (int)(GameManager.Instance.playTimeTimer * playtimeWeight + GameManager.Instance.EarnedCoin * CoinWeight);
+            totalScore = (int)(GameManager.Instance.PlayTimeTimer * playtimeWeight + GameManager.Instance.EarnedCoin * CoinWeight);
             scoreText.text = totalScore.ToString();
-            HpbarImage.fillAmount = GameManager.Instance.PlayerHP / GameManager.Instance.maxHP;
+            HpbarImage.fillAmount = GameManager.Instance.PlayerHP / GameManager.Instance.maxHp;
         }
     }
 }

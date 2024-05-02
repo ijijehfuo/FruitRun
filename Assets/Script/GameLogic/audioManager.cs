@@ -46,8 +46,6 @@ public class audioManager : MonoBehaviour
     public void PlaySfx(AudioClip clip)
     {
         SfxSource.PlayOneShot(clip);
-
-        audioManager.Instance.PlayEffect(ClipName.Jump);
     }
 
     public void PlayEffect(ClipName clip)
@@ -57,31 +55,28 @@ public class audioManager : MonoBehaviour
             case ClipName.Jump:
                 PlaySfx(Jump);
                 break;
+
             case ClipName.Slide:
                 PlaySfx(Slide);
                 break;
+
             case ClipName.Explo:
                 PlaySfx(Explo);
                 break;
+
             case ClipName.Coin:
                 PlaySfx(Coin);
                 break;
+
             case ClipName.Food:
                 PlaySfx(Food);
                 break;
+
             default:
                 break;
         }
     }
 
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

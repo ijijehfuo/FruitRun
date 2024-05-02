@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // 싱글톤 : 어디서든 이 클래스에 접근할 수 있다, 매번 만들지 않는다
+    // 싱글톤 : 어디서든 이클래스에 접근할수있다! 매번 만들지 않는다.
     public static GameManager Instance { get; private set; }
 
-    // 게임 생태 관리
+    // 게임 상태 관리
     public bool IsGameStarted { get; private set; }
     public bool IsGameOver { get; private set; }
     public bool IsPause { get; private set; }
@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
 
     // 난이도 조절을 위한 시간 추적
     private float difficultyTimer;
-    public float playTimeTimer = 0f;
+    public float PlayTimeTimer = 0;
 
     // 체력 관련
-    public float maxHP = 10f;
+    public float maxHp = 10;
 
     public float SpeedEffectTime = 0;
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        initializeGame();
+        InitializeGame();
     }
 
     void Update()
@@ -47,23 +47,23 @@ public class GameManager : MonoBehaviour
         {
             if (!IsPause)
             {
-                UpdateGameDifficulty();
-                UpdatePlayTime();
+                //UpdateGameDifficulty();
+                //UpdatePlayTime();
                 UpdateSpeedEffectTime();
             }
         }
     }
 
-    private void initializeGame()
+    private void InitializeGame()
     {
         IsGameStarted = true;
         IsGameOver = false;
         Score = 0;
-        PlayerHP = 10;
+        PlayerHP = maxHp;
         GameSpeed = 3f;
         IsSpeedBoostActive = false;
         difficultyTimer = 0f;
-        playTimeTimer = 0f;
+        PlayTimeTimer = 0f;
         EarnedCoin = 0;
     }
 
@@ -94,14 +94,27 @@ public class GameManager : MonoBehaviour
 
     private void UpdateGameDifficulty()
     {
-        // difficultyTimer에 시간이 지나는것을 체크하고
-        // 30초보다 크거나 같게 되었을때 게임속도 Gamespeed가 증가
+        // difficultyTimer로 시간이 지나는것을 체크하고
+        // 30초보다 크거나 같게 되었을때 게임속도 gamespeed가 증가
 
         difficultyTimer += Time.deltaTime;
+
         if (difficultyTimer >= 30)
         {
             GameSpeed += 1f;
             difficultyTimer = 0;
+        }
+    }
+
+    private void UpdatePlayTime()
+    {
+        if (IsPause)
+        {
+            return;
+        }
+        else
+        {
+            PlayTimeTimer += Time.deltaTime;
         }
     }
 
@@ -118,28 +131,19 @@ public class GameManager : MonoBehaviour
         SpeedEffectTime = value;
     }
 
-    private void UpdatePlayTime()
-    {
+    // 체력값을 매개변수로 받아
+    // 체력을 높이는 코드
 
-        if (IsPause)
-        {
-            return;
-        }
-        else
-        {
-            playTimeTimer += Time.deltaTime;
-        }
-    }
-
-    // 변수를 매개변수로 받아 체력을 높이는 코드
-    // 최대체력 이상 시 체력은 최대체력으로 유지
+    // 최대체력 이상 시
+    // 체력은 최대체력으로
+    // 유지
     public void IncreaseHealth(int value)
     {
         PlayerHP += value;
 
-        if (PlayerHP >= maxHP)
+        if (PlayerHP >= maxHp)
         {
-            PlayerHP = maxHP;
+            PlayerHP = maxHp;
         }
     }
 
@@ -147,8 +151,8 @@ public class GameManager : MonoBehaviour
     // 체력을 낮추는 코드
 
     // 체력 0 이하일시에
-    //isGameOver를 참으로 설정
-    public void DecreaseHealth(int value)
+    // IsGameOver를 참으로 설정
+    public void DecreaseHelath(int value)
     {
         PlayerHP -= value;
 
