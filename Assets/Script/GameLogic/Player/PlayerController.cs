@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class PlayerController : MonoBehaviour
 {
+    private SpriteLibrary Library;
+
     public float DeathHeight = -7f;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
@@ -19,6 +22,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Library = GetComponent<SpriteLibrary>();
+        Library.spriteLibraryAsset = DataManager.Instance.SelectCharacter.Asset;
     }
 
     void Update()

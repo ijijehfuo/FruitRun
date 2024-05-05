@@ -10,6 +10,7 @@ public class PlayerUIManager : MonoBehaviour
     public float CoinWeight = 500f;
     public int totalScore;
     public Text scoreText;
+    public Text HighScoreText;
     public Image HpbarImage;
     public GameObject GameOverPopup;
     public GameObject GamePausePopup;
@@ -23,6 +24,8 @@ public class PlayerUIManager : MonoBehaviour
     {
         Jumpbutton.onClick.AddListener(PlayerController.Jump);
         PauseButton.onClick.AddListener(() =>GameManager.Instance.GamePause());
+        string highScore = PlayerPrefs.GetString("HighScore");
+        HighScoreText.text = $"High Score : {highScore}";
     }
 
     void Update()

@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
+
     public UIMessagePopup MessagePopup;
 
     public int GameMoney;
     public int Cash;
-    public string CharacterName;
+    public Character SelectCharacter;
 
     public void Awake()
     {
@@ -19,3 +20,4 @@ public class DataManager : MonoBehaviour
     }
 
 }
+

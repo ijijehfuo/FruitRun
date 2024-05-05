@@ -1616,7 +1616,6 @@ GameObject:
   m_Component:
   - component: {fileID: 486863699}
   - component: {fileID: 486863701}
-  - component: {fileID: 486863700}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -1645,14 +1644,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!81 &486863700
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486863698}
-  m_Enabled: 1
 --- !u!20 &486863701
 Camera:
   m_ObjectHideFlags: 0
@@ -2006,7 +1997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 5eecfd2535dac4507b58578d25df8c93, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: f149ab9b7e2f2f54b9c503d65bbf9caf, type: 3}
 --- !u!212 &559836183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2048,7 +2039,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6056987297122131021, guid: d348dff3819df794186a80cb95777629, type: 3}
+  m_Sprite: {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2072,9 +2063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.009161512
-  m_labelHash: 6.320269e-16
+  m_labelHash: 4.511669e-33
   m_SpriteKey: 0
-  m_SpriteHash: 1052507461
+  m_SpriteHash: 47513121
 --- !u!1 &605007258
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,7 +4105,7 @@ MonoBehaviour:
   MessagePopup: {fileID: 662945796}
   GameMoney: 0
   Cash: 0
-  CharacterName: 
+  SelectCharacter: {fileID: 11400000, guid: 6cbbd7c5b73a846fb994f2764a46496b, type: 2}
 --- !u!114 &1303369187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5736,6 +5727,7 @@ MonoBehaviour:
   LeftButton: {fileID: 1680638240}
   RightButton: {fileID: 1935122464}
   StartButton: {fileID: 39764009}
+  SelectButton: {fileID: 91219713}
   Characters:
   - {fileID: 11400000, guid: 6cbbd7c5b73a846fb994f2764a46496b, type: 2}
   - {fileID: 11400000, guid: 34186b0cc2dde41e3855d2f31735b79a, type: 2}

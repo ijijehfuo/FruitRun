@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
         {
             if (!IsPause)
             {
-                //UpdateGameDifficulty();
-                //UpdatePlayTime();
+                UpdateGameDifficulty();
+                UpdatePlayTime();
                 UpdateSpeedEffectTime();
             }
         }

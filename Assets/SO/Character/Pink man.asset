@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: "\uBAB8\uC774 \uD551\uD06C\uC774\uB2E4."
   Ability: "\uC7A5\uC560\uBB3C \uD53C\uD574 \uC800\uD56D"
   Health: 100
-  Asset: {fileID: 7108339969198208228, guid: 5eecfd2535dac4507b58578d25df8c93, type: 3}
+  Asset: {fileID: 7108339969198208228, guid: f149ab9b7e2f2f54b9c503d65bbf9caf, type: 3}
   Skills:
   - {fileID: 11400000, guid: 22ea52396a95d4b81a40611c080d0d37, type: 2}

@@ -10,6 +10,7 @@ public class UICharacterSelect : MonoBehaviour
     public Button LeftButton;
     public Button RightButton;
     public Button StartButton;
+    public Button SelectButton;
 
     public Character[] Characters;
     public GameObject ButtonPrefab;
@@ -32,6 +33,12 @@ public class UICharacterSelect : MonoBehaviour
         LeftButton.onClick.AddListener(PreviousCharacter);
         RightButton.onClick.AddListener(NextCharacter);
         StartButton.onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Start));
+        SelectButton.onClick.AddListener(OnClickSelectButtton);
+    }
+
+    private void OnClickSelectButtton()
+    {
+        DataManager.Instance.SelectCharacter = Characters[_currentIndex];
     }
 
     private void UpdateCharacterDisplay()

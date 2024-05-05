@@ -17,6 +17,10 @@ public class UIGameOver : MonoBehaviour
     {
         RetryButton.onClick.AddListener(RestartScene);
         ExitButton.onClick.AddListener(ChangeUIScene);
+        if (GameManager.Instance.Score > int.Parse(PlayerPrefs.GetString("HighScore")))
+        {
+            PlayerPrefs.SetString("HighScore", GameManager.Instance.Score.ToString());
+        }
     }
 
     // Update is called once per frame
