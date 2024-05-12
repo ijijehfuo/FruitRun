@@ -18,12 +18,25 @@ public class PlayerController : MonoBehaviour
     public int maxJump = 2;
     private Animator animator;
 
+    // WHY? 스케일업 아이템을 먹어서
+    // HOW? 커지다가 몇초동안 커진상태로 있다가 작아진다
+    // (scaleUpSpeed) 빠르게 커지다가
+    public float ScaleUpStart = 0.5f;
+    public float ScaleUpRemain = 3f;
+    public float ScaleUpEnd = 0.5f;
+    // {ScaleUPStart}동안 커지다가 {ScaleUpRemain} 커진상태로 있다가 {SclaeUPEnd}만큼 얼마만큼 작아진디
+    private Vector3 originScale; // 플레이어의 원래크기
+    public float ScaleUpFactor = 2f; // 스케일업 배울
+    private Coroutine scaleUpCo;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Library = GetComponent<SpriteLibrary>();
         Library.spriteLibraryAsset = DataManager.Instance.SelectCharacter.Asset;
+        originScale = transform.localScale;
     }
 
     void Update()
@@ -55,7 +68,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        if (GameManager.Instance.IsScaleEventActive)
+        {
+            GameManager.Instance.IsScaleEventActive = false;
+            ScaleUpEvent();
+        }
         if (GameManager.Instance.IsPause)
         {
             rb.Sleep();
@@ -66,6 +83,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public IEnumerator StartScaleChange()
+    {
+        Vector3 targetScale = ScaleUpFactor * originScale;
+        float currentTime = 0f;
+
+        while (currentTime >= ScaleUpStart)
+        {
+            transform.localScale = Vector3.Lerp(originScale, targetScale, currentTime / ScaleUpStart);
+            currentTime += Time.deltaTime;
+            yield return new WaitForSeconds(0.2f);
+        }
+        transform.localScale = targetScale;
+
+        // 유지시간
+        yield return new WaitForSeconds(ScaleUpRemain);
+
+        currentTime = 0f;
+        while (currentTime < ScaleUpEnd)
+        {
+            transform.localScale = Vector3.Lerp(targetScale, originScale, currentTime / ScaleUpStart);
+            currentTime += Time.deltaTime;
+            yield return new WaitForSeconds(0.2f);
+        }
+        transform.localScale = originScale;
+        scaleUpCo = null;
+    }
+
+    public void ScaleUpEvent()
+    {
+        if (scaleUpCo != null)
+        {
+            StopCoroutine(StartScaleChange());
+        }
+        StartCoroutine(StartScaleChange());
+    }
     public void StartSlide()
     {
         isSliding = true;
@@ -117,8 +169,11 @@ public class PlayerController : MonoBehaviour
             }
             else if (collision.GetComponent<Obstacles>() != null)
             {
-                animator.SetTrigger("Hit");
-                collision.GetComponent<Obstacles>().OnEarned();
+                if (scaleUpCo == null)
+                { 
+                    animator.SetTrigger("Hit");
+                    collision.GetComponent<Obstacles>().OnEarned();
+                }
             }
             else if (collision.GetComponent<Items>() != null)
             {

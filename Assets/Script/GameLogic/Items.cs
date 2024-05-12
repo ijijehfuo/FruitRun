@@ -35,7 +35,7 @@ public class Items : MonoBehaviour
         }
         else if (type == ItemType.Scale)
         {
-
+            GameManager.Instance.IsScaleEventActive = true;
         }
         
     }

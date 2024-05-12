@@ -3412,6 +3412,10 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 10
   maxJump: 2
+  ScaleUpStart: 0
+  ScaleUpRemain: 0
+  ScaleUpEnd: 0
+  ScaleUpFactor: 2
 --- !u!95 &1506062076
 Animator:
   serializedVersion: 5

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int EarnedCoin { get; set; }
 
     // 특별 이벤트
+    public bool IsScaleEventActive { get; set; }
     public bool IsSpeedBoostActive { get; private set; }
     public float SpeedBoostDuration = 5f;
 
