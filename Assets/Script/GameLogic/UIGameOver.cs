@@ -17,10 +17,17 @@ public class UIGameOver : MonoBehaviour
     {
         RetryButton.onClick.AddListener(RestartScene);
         ExitButton.onClick.AddListener(ChangeUIScene);
-        if (GameManager.Instance.Score > int.Parse(PlayerPrefs.GetString("HighScore")))
+
+        int highScore;
+        if (!int.TryParse(PlayerPrefs.GetString("HighScore"), out highScore))
+        {
+            highScore = 0; // 변환 실패 시 기본값 설정
+        }
+        if (GameManager.Instance.Score > highScore)
         {
             PlayerPrefs.SetString("HighScore", GameManager.Instance.Score.ToString());
         }
+        DataManager.Instance.SetGameMoney(GameManager.Instance.Score / 100);
     }
 
     // Update is called once per frame

@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public float maxHp = 10;
 
     public float SpeedEffectTime = 0;
+    public float ExtraSpeedRemainTime = 0;
+    public float ScaleExtraRemain = 0f;
 
     private void Awake()
     {
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InitializeGame();
+        DataManager.Instance.SetSkill();
     }
 
     void Update()
@@ -129,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseSpeedTime(int value)
     {
-        SpeedEffectTime = value;
+        SpeedEffectTime = value + ExtraSpeedRemainTime;
     }
 
     // 체력값을 매개변수로 받아

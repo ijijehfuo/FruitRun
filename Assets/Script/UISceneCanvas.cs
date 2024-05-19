@@ -33,6 +33,8 @@ public class UISceneCanvas : MonoBehaviour
     public void Start()
     {
         // 아스키코드
+        DataManager.Instance.GetGameMoney();
+
         GameMoneyText.text = DataManager.Instance.GameMoney.ToString();
         CashText.text = DataManager.Instance.Cash.ToString();
     }

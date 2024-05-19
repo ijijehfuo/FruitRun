@@ -21,12 +21,12 @@ public class PlayerController : MonoBehaviour
     // WHY? 스케일업 아이템을 먹어서
     // HOW? 커지다가 몇초동안 커진상태로 있다가 작아진다
     // (scaleUpSpeed) 빠르게 커지다가
-    public float ScaleUpStart = 0.5f;
-    public float ScaleUpRemain = 3f;
-    public float ScaleUpEnd = 0.5f;
+    private float ScaleUpStart = 0.5f;
+    private float ScaleUpRemain = 3f;
+    private float ScaleUpEnd = 0.5f;
     // {ScaleUPStart}동안 커지다가 {ScaleUpRemain} 커진상태로 있다가 {SclaeUPEnd}만큼 얼마만큼 작아진디
     private Vector3 originScale; // 플레이어의 원래크기
-    public float ScaleUpFactor = 2f; // 스케일업 배울
+    private float ScaleUpFactor = 2f; // 스케일업 배울
     private Coroutine scaleUpCo;
 
 
@@ -92,19 +92,19 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = Vector3.Lerp(originScale, targetScale, currentTime / ScaleUpStart);
             currentTime += Time.deltaTime;
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
         transform.localScale = targetScale;
 
         // 유지시간
-        yield return new WaitForSeconds(ScaleUpRemain);
-
+        yield return new WaitForSeconds(ScaleUpRemain + GameManager.Instance.ScaleExtraRemain);
+        
         currentTime = 0f;
         while (currentTime < ScaleUpEnd)
         {
             transform.localScale = Vector3.Lerp(targetScale, originScale, currentTime / ScaleUpStart);
             currentTime += Time.deltaTime;
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
         transform.localScale = originScale;
         scaleUpCo = null;
@@ -169,8 +169,12 @@ public class PlayerController : MonoBehaviour
             }
             else if (collision.GetComponent<Obstacles>() != null)
             {
-                if (scaleUpCo == null)
+                if (transform.localScale.x > originScale.x)
                 { 
+                    
+                }
+                else
+                {
                     animator.SetTrigger("Hit");
                     collision.GetComponent<Obstacles>().OnEarned();
                 }
