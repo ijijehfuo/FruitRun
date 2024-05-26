@@ -11,6 +11,9 @@ public class UICharacterSelect : MonoBehaviour
     public Button RightButton;
     public Button StartButton;
     public Button SelectButton;
+    public Button BuyButton;
+
+    public Text PriceText;
 
     public Character[] Characters;
     public GameObject ButtonPrefab;
@@ -34,6 +37,17 @@ public class UICharacterSelect : MonoBehaviour
         RightButton.onClick.AddListener(NextCharacter);
         StartButton.onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Start));
         SelectButton.onClick.AddListener(OnClickSelectButtton);
+        BuyButton.onClick.AddListener(OnClickBuyButton);
+    }
+
+    private void OnClickBuyButton()
+    {
+        Character currentCharacter = Characters[_currentIndex];
+        if (DataManager.Instance.PurchaseCharacter(currentCharacter) == true)
+        {
+            BuyButton.gameObject.SetActive(false);
+        }
+
     }
 
     private void OnClickSelectButtton()
@@ -44,6 +58,16 @@ public class UICharacterSelect : MonoBehaviour
     private void UpdateCharacterDisplay()
     {
         Character currentCharacter = Characters[_currentIndex];
+
+        if (currentCharacter.IsPurchased == true)
+        {
+            BuyButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            BuyButton.gameObject.SetActive(true);
+            PriceText.text = $"{currentCharacter.Price} 골드";
+        }
         _nameText.text = currentCharacter.Name;
         _descriptionText.text = currentCharacter.Description;
         _asset .spriteLibraryAsset = currentCharacter.Asset;

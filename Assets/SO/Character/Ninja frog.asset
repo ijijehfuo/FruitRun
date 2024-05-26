@@ -20,3 +20,4 @@ MonoBehaviour:
   Asset: {fileID: 7108339969198208228, guid: ffc9df4f94078b2438d7b99e9973b35a, type: 3}
   Skills:
   - {fileID: 11400000, guid: 3316f2aa86d9a4778aa3f77fcc24f6dd, type: 2}
+  Price: 7000

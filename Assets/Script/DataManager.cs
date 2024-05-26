@@ -72,5 +72,22 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt("GameMoney", GameMoney);
         MessagePopup.UpdateContent(value.ToString(), false);
     }
+
+    public bool PurchaseCharacter(Character character)
+    {
+        if (GameMoney >= character.Price)
+        {
+            character.IsPurchased = true;
+            GameMoney -= character.Price;
+            PlayerPrefs.SetInt("GameMoney", GameMoney);
+            MessagePopup.UpdateContent($"{character.Name} 캐릭터를 구매하셨습니다!", false);
+            return true;
+        }
+        else
+        {
+            MessagePopup.UpdateContent($"캐릭터를 구매하기 위한 돈이 부족합니다!", false);
+            return false;
+        }
+    }
 }
 

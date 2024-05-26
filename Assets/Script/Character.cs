@@ -12,4 +12,21 @@ public class Character : ScriptableObject
     public float Health;
     public SpriteLibraryAsset Asset;
     public Skill[] Skills;
+    public int Price;
+
+    public bool IsPurchased
+    {
+        get => PlayerPrefs.GetInt($"Character_{Name}_Purchased", 0) == 1;
+        set
+        {
+            if (value == true)
+            {
+                PlayerPrefs.SetInt($"Character_{Name}_Purchased", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt($"Character_{Name}_Purchased", 0);
+            }
+        }
+    }
 }
