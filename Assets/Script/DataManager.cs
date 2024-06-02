@@ -13,6 +13,8 @@ public class DataManager : MonoBehaviour
     public int Cash;
     public Character SelectCharacter;
 
+    public int CostExperience = 1;
+
     public void Awake()
     {
         if (Instance != null)
@@ -81,6 +83,7 @@ public class DataManager : MonoBehaviour
             GameMoney -= character.Price;
             PlayerPrefs.SetInt("GameMoney", GameMoney);
             MessagePopup.UpdateContent($"{character.Name} 캐릭터를 구매하셨습니다!", false);
+            UISceneCanvas.Instance.UpdateText();
             return true;
         }
         else
@@ -88,6 +91,25 @@ public class DataManager : MonoBehaviour
             MessagePopup.UpdateContent($"캐릭터를 구매하기 위한 돈이 부족합니다!", false);
             return false;
         }
+    }
+
+    public bool PurchaceExperience(Character character)
+    {
+        if (GameMoney >= CostExperience)
+        {
+            character.AddExperience();
+            GameMoney -= CostExperience;
+            PlayerPrefs.SetInt("GameMoney", GameMoney);
+            MessagePopup.UpdateContent($"{character.Name} 경험치를 구매하셨습니다!", false);
+            UISceneCanvas.Instance.UpdateText();
+            return true;
+        }
+        else
+        {
+            MessagePopup.UpdateContent($"경험치를 구매하기위한 돈이 부족합니다!", false);
+            return false;
+        }
+
     }
 }
 

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
@@ -12,7 +9,10 @@ public class UICharacterSelect : MonoBehaviour
     public Button StartButton;
     public Button SelectButton;
     public Button BuyButton;
+    public Button BuyExperience;
+    public Slider ExpSlider;
 
+    public Text LevelText;
     public Text PriceText;
 
     public Character[] Characters;
@@ -38,6 +38,7 @@ public class UICharacterSelect : MonoBehaviour
         StartButton.onClick.AddListener(() => UISceneCanvas.Instance.OpenPopup(ButtonClickType.Start));
         SelectButton.onClick.AddListener(OnClickSelectButtton);
         BuyButton.onClick.AddListener(OnClickBuyButton);
+        BuyExperience.onClick.AddListener(OnClickBuyExperienceButton);
     }
 
     private void OnClickBuyButton()
@@ -55,6 +56,20 @@ public class UICharacterSelect : MonoBehaviour
         DataManager.Instance.SelectCharacter = Characters[_currentIndex];
     }
 
+    private void OnClickBuyExperienceButton()
+    {
+        Character currentCharacter = Characters[_currentIndex];
+        if (DataManager.Instance.PurchaceExperience(currentCharacter) == true)
+        {
+            LevelText.text = "LV. " + currentCharacter.Level.ToString();
+            ExpSlider.value = (float)currentCharacter.Experience / (float)currentCharacter.MaxExperience;
+            _nameText.text = currentCharacter.Name;
+            _descriptionText.text = currentCharacter.Description;
+            _asset.spriteLibraryAsset = currentCharacter.Asset;
+            LoadSkill(currentCharacter);
+        }
+    }
+
     private void UpdateCharacterDisplay()
     {
         Character currentCharacter = Characters[_currentIndex];
@@ -68,6 +83,8 @@ public class UICharacterSelect : MonoBehaviour
             BuyButton.gameObject.SetActive(true);
             PriceText.text = $"{currentCharacter.Price} 골드";
         }
+
+        LevelText.text = "LV. " + currentCharacter.Level.ToString();
         _nameText.text = currentCharacter.Name;
         _descriptionText.text = currentCharacter.Description;
         _asset .spriteLibraryAsset = currentCharacter.Asset;
