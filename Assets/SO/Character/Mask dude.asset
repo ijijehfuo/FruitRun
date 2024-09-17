@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea594975782f4b1e8ceadd89852ba8e, type: 3}
+  m_Name: Mask dude
+  m_EditorClassIdentifier: 
+  Name: "\uB9C8\uC2A4\uD06C \uB4C0\uB4DC"
+  Description: "\uC5B4\uB5A4 \uBD80\uC871\uC758 \uC871\uC7A5\uC774\uB2E4."
+  Ability: "\uB2E8\uCCB4 \uACF5\uACA9"
+  Health: 150
+  Asset: {fileID: 7108339969198208228, guid: 86c35bbf7330ddf428f3a8dee531a119, type: 3}
+  Skills:
+  - {fileID: 11400000, guid: 89f4c85b1d78e4a55a41919189db0fad, type: 2}
+  Price: 5000
